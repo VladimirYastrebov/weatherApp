@@ -6,8 +6,6 @@ import { WeatherCard } from "./components/WeatherCard";
 import { Footer } from "./components/Footer";
 import { fetchData } from "./utils";
 
-const API_URL = "https://api.openweathermap.org/data/2.5/forecast";
-const API_KEY = "a94d0a5ac08570add4b47b8da933f247";
 
 function App() {
   const [data, setData] = useState(null);
@@ -15,9 +13,9 @@ function App() {
   const [errorState, setErroState] = useState(null);
 
   const handleSearchRequest = async (city) => {
-    const data = await fetchData(API_URL, {
+    const data = await fetchData(import.meta.env.VITE_API_URL || "", {
       city,
-      apiKey: API_KEY,
+      apiKey: import.meta.env.VITE_API_KEY || "",
       units: "metric",
     });
     setData(data);
